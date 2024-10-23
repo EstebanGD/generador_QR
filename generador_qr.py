@@ -108,38 +108,61 @@ def num_caracteres(x,y,cad):
                 x-=20
 
 #codificacion binario cadena de caracteres
-def cadena_cod(x,y,cad):
+def cadena_cod(x,y,cad, band):
     aux_x=x
+    x2=440+20
+    aux_x2=x2
+    x+=20
     count = 0
-
     for c in cad:
-        if count <2:
+        if y==160:
+            band = False
+            
+        if band == True :
+            if count <2:
+                x-=20
+            else:
+                count = 0
+                x=aux_x
+                y=y-20
+                if y==160:
+                    x=440
+                    y=180
+                    if c == '0':
+                        canvas.create_rectangle(x, y, x+20, y+20, fill="white")
+                        count +=1
+                    else:
+                        canvas.create_rectangle(x, y, x+20, y+20, fill="black")
+                        count +=1
+                    band = False
             if c == '0':
                 canvas.create_rectangle(x, y, x+20, y+20, fill="white")
                 count +=1
-                x-=20
             else:
                 canvas.create_rectangle(x, y, x+20, y+20, fill="black")
                 count +=1
-                x-=20
         else:
-            count = 0
-            x=aux_x
-            y=y-20
-            if c == '0':
-                canvas.create_rectangle(x, y, x+20, y+20, fill="white")
-                count +=1
-                x-=20
+            y=200
+            print(c)
+            aux_x2=x2-20
+            if count <2:
+                x2-=20
             else:
-                canvas.create_rectangle(x, y, x+20, y+20, fill="black")
+                count = 0
+                x2=aux_x2
+                y=y+20
+            if c == '0':
+                canvas.create_rectangle(x2, y, x2+20, y+20, fill="white")
                 count +=1
-                x-=20
+            else:
+                canvas.create_rectangle(x2, y, x2+20, y+20, fill="black")
+                count +=1
 
 #llamado de funciones
 valores_por_defecto()
 p_temporizacion_superior()
 p_temporizacion_lateral()
 num_caracteres(480, 440, tam)
-cadena_cod(480, 360, binario)
+cadena_cod(480, 360, binario, True)
 
 pantalla.mainloop()
