@@ -87,24 +87,29 @@ def llenado_matriz(matriz,cad):
     pCad=0
     fila=24
     col=24
-    dir=1
+    pat=1
     count=0
 
     while pCad < len(cad):
-        if matriz[fila,col] == 0 and dir == 1:
+        if matriz[fila,col] == 0 and pat == 1:
             for i in range(2):
                 matriz[fila,col-i]=int(cad[pCad])
                 pCad+=1
-            #if fila < 9:
-                #fila-=1
-            fila-=1
-        elif fila < 24:
-            fila+=1
-            dir = -1
+            print(count)
+            count+=1
+            fila -= 1
+        elif fila <= 24:
+            fila += 1
+            pat = -1
             for i in range(2):
-                matriz[fila,22-i]=int(cad[pCad])
+                matriz[fila,22-i] = int(cad[pCad])
                 pCad+=1
-        #pCad+=1
+                count-=1
+                print(count)
+        """elif fila == 25 or pat == 0:
+            fila -= 1
+            pat = 0
+            pCad+=1"""
 
 def save_qr_colored(matriz):
     filename="qr_code_colored.png"
