@@ -164,5 +164,6 @@ p_temporizacion_superior()
 p_temporizacion_lateral()
 num_caracteres(480, 440, tam)
 cadena_cod(480, 360, binario, True)
+print(binario)
 
 pantalla.mainloop()
